@@ -11,7 +11,11 @@
     <script>
     $(function() {
       $('img').click(function() {
-        capturePhoto();
+        try {
+          capturePhoto();
+        } catch(err) {
+          alert('err!');
+        }
         alert('img!');
       });
       $('#form').submit(function(evt) {
