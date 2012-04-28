@@ -10,6 +10,10 @@
     <script type="text/javascript" charset="utf-8" src="js/camera.js"></script>
     <script>
     $(function() {
+      $('img').click(function() {
+        capturePhoto();
+        alert('img!');
+      });
       $('#form').submit(function(evt) {
         evt.preventDefault();
         var words = [];
