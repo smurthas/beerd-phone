@@ -5,11 +5,17 @@
       Capture Photo
     </title>
     <link rel="stylesheet" type="text/css" charset="utf-8" href="css/exbeer.css" />
+    <link rel="stylesheet" type="text/css" charset="utf-8" href="css/style.css" />
     <script type="text/javascript" charset="utf-8" src="js/cordova-1.7.0rc1.js"></script>
     <script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+    <script type="text/javascript" charset="utf-8" src="js/cloudmine.js"></script>
     <script type="text/javascript" charset="utf-8" src="js/camera.js"></script>
+    <script type="text/javascript" charset="utf-8" src="js/exbeer.js"></script>
     <script>
     $(function() {
+
+      var exb = new ExBeer();
+
       $('img').click(function() {
         try {
           capturePhoto();
@@ -30,6 +36,10 @@
           }
         };
         alert(JSON.stringify(vals));
+        exb.postExBeerience(vals, function(err, exBeerience) {
+          console.error("DEBUG: err", err);
+          console.error("DEBUG: exBeerience", exBeerience);
+        });
         return false;
       })
     })

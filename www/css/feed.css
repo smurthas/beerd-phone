@@ -1,0 +1,29 @@
+.beer-photo {
+  max-width:140px;
+  max-height:140px;
+  float:left;
+}
+
+.profile-pic {
+  float:left;
+}
+
+.top-info {
+  display: inline-block;
+  margin-left: 10px;
+}
+
+.word {
+  font-size: 24px;
+}
+
+.words {
+  display: inline-block;
+  margin-left: 10px;
+}
+
+.exbeer {
+  padding: 10px 0;
+  margin: 0;
+  border-top:1px solid black;
+}
