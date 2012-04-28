@@ -94,6 +94,13 @@
             }
 
     </script>
+    <script>
+    $(function() {
+      $('form').submit(function(evt) {
+        alert(JSON.stringify(evt));
+      })
+    })
+    </script>
   </head>
   <body>
     <img id="photo">
@@ -101,6 +108,7 @@
       <input class='word' id='word1'/>
       <input class='word' id='word2'/>
       <input class='word' id='word3'/>
+      <input type="submit" value="Post">
     </form>
     <p>
       <button onclick="capturePhoto();">Capture Photo</button><br>
