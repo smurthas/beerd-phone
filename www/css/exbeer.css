@@ -1,0 +1,50 @@
+body {
+  width:320px;
+  font-family: Helvetica Neue;
+}
+
+.clear {
+  clear:both;
+}
+
+h1 {
+  font-size:24px;
+  text-align: center;
+  margin: 10px 0;
+}
+
+h2 {
+  font-size:18px;
+  margin:0;
+}
+
+img {
+  min-width: 140px;
+  min-height:140px;
+  border: 1px solid black;
+  float:left;
+}
+
+.words {
+  display: inline-block;
+  margin-left: 10px;
+  width: 120px;
+}
+
+.beer {
+  margin-top: 10px;
+}
+
+input[type=text] {
+  margin: 4px 0;
+  font-size: 16px;
+}
+
+.beerinput {
+  width: 270px;
+  margin-left:0px;
+}
+
+.word {
+  width: 120px;
+}

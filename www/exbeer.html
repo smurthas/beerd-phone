@@ -4,6 +4,7 @@
     <title>
       Capture Photo
     </title>
+    <link rel="stylesheet" type="text/css" charset="utf-8" href="css/exbeer.css" />
     <script type="text/javascript" charset="utf-8" src="js/cordova-1.7.0rc1.js"></script>
     <script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
     <script type="text/javascript" charset="utf-8">
@@ -103,19 +104,28 @@
     </script>
   </head>
   <body>
+    <h1>Share your ExBeerience!</h1>
     <img id="photo">
     <form>
-      <input class='word' id='word1'/>
-      <input class='word' id='word2'/>
-      <input class='word' id='word3'/>
-      <input type="submit" value="Post">
+      <div class='words'>
+        <h2>Describe it:</h2>
+        <input type='text' class='word' id='word1' placeholder='Purple.'/>
+        <input type='text' class='word' id='word2' placeholder='Tall.'/>
+        <input type='text' class='word' id='word3' placeholder='Insightful.'/>
+      </div>
+      <div class='clear'></div>
+      <div class='beer'>
+        <input type='text' class='beerinput' id='brewery' placeholder='Brewery...'/>
+        <input type='text' class='beerinput' id='beername' placeholder='Beer Name...'/>
+      </div>
+      <input type='submit' value='Post Your ExBeerience!'>
     </form>
     <p>
-      <button onclick="capturePhoto();">Capture Photo</button><br>
+<!--      <button onclick="capturePhoto();">Capture Photo</button><br>
       <button onclick="capturePhotoEdit();">Capture Editable Photo</button><br>
       <button onclick="getPhoto(pictureSource.PHOTOLIBRARY);">From Photo Library</button><br>
       <button onclick="getPhoto(pictureSource.SAVEDPHOTOALBUM);">From Photo Album</button><br>
-      <img style="display:none;width:60px;height:60px;" id="smallImage" src="" name="smallImage"> <img style="display:none;" id="largeImage" src="" name="largeImage">
+      <img style="display:none;width:60px;height:60px;" id="smallImage" src="" name="smallImage"> <img style="display:none;" id="largeImage" src="" name="largeImage"> -->
     </p>
   </body>
 </html>
