@@ -7,98 +7,22 @@
     <link rel="stylesheet" type="text/css" charset="utf-8" href="css/exbeer.css" />
     <script type="text/javascript" charset="utf-8" src="js/cordova-1.7.0rc1.js"></script>
     <script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
-    <script type="text/javascript" charset="utf-8">
-
-            var pictureSource;   // picture source
-            var destinationType; // sets the format of returned value
-
-            // Wait for Cordova to connect with the device
-            //
-            document.addEventListener("deviceready",onDeviceReady,false);
-
-            // Cordova is ready to be used!
-            //
-            function onDeviceReady() {
-                pictureSource=navigator.camera.PictureSourceType;
-                destinationType=navigator.camera.DestinationType;
-            }
-
-            // Called when a photo is successfully retrieved
-            //
-            function onPhotoDataSuccess(imageData) {
-                // Uncomment to view the base64 encoded image data
-                // console.log(imageData);
-
-                // Get image handle
-                //
-                var smallImage = document.getElementById('smallImage');
-
-                // Unhide image elements
-                //
-                smallImage.style.display = 'block';
-
-                // Show the captured photo
-                // The inline CSS rules are used to resize the image
-                //
-                smallImage.src = "data:image/jpeg;base64," + imageData;
-            }
-
-            // Called when a photo is successfully retrieved
-            //
-            function onPhotoURISuccess(imageURI) {
-                // Uncomment to view the image file URI
-                // console.log(imageURI);
-
-                // Get image handle
-                //
-                var largeImage = document.getElementById('largeImage');
-
-                // Unhide image elements
-                //
-                largeImage.style.display = 'block';
-
-                // Show the captured photo
-                // The inline CSS rules are used to resize the image
-                //
-                largeImage.src = imageURI;
-            }
-
-            // A button will call this function
-            //
-            function capturePhoto() {
-                // Take picture using device camera and retrieve image as base64-encoded string
-                navigator.camera.getPicture(onPhotoDataSuccess, onFail, { quality: 50,
-                                            destinationType: destinationType.DATA_URL });
-            }
-
-            // A button will call this function
-            //
-            function capturePhotoEdit() {
-                // Take picture using device camera, allow edit, and retrieve image as base64-encoded string
-                navigator.camera.getPicture(onPhotoDataSuccess, onFail, { quality: 20, allowEdit: true,
-                                            destinationType: destinationType.DATA_URL });
-            }
-
-            // A button will call this function
-            //
-            function getPhoto(source) {
-                // Retrieve image file location from specified source
-                navigator.camera.getPicture(onPhotoURISuccess, onFail, { quality: 50,
-                                            destinationType: destinationType.FILE_URI,
-                                            sourceType: source });
-            }
-
-            // Called if something bad happens.
-            //
-            function onFail(message) {
-                alert('Failed because: ' + message);
-            }
-
-    </script>
+    <script type="text/javascript" charset="utf-8" src="js/camera.js"></script>
     <script>
     $(function() {
-      $('form').submit(function(evt) {
-        alert(JSON.stringify(evt));
+      $('#form').submit(function(evt) {
+        evt.preventDefault();
+        var words = [];
+        for (var i=0; i < 3; i++) words[i] = $('form #word' + i).val();
+        var vals = {
+          words: words,
+          beer: {
+            name: $("#beername").val(),
+            brewery: $("#brewery").val()
+          }
+        };
+        alert(JSON.stringify(vals));
+        return false;
       })
     })
     </script>
@@ -106,12 +30,12 @@
   <body>
     <h1>Share your ExBeerience!</h1>
     <img id="photo">
-    <form>
+    <form id='form'>
       <div class='words'>
         <h2>Describe it:</h2>
-        <input type='text' class='word' id='word1' placeholder='Purple.'/>
-        <input type='text' class='word' id='word2' placeholder='Tall.'/>
-        <input type='text' class='word' id='word3' placeholder='Insightful.'/>
+        <input type='text' class='word' id='word0' placeholder='Purple.'/>
+        <input type='text' class='word' id='word1' placeholder='Tall.'/>
+        <input type='text' class='word' id='word2' placeholder='Insightful.'/>
       </div>
       <div class='clear'></div>
       <div class='beer'>
