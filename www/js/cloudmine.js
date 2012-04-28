@@ -354,7 +354,6 @@
                     callbacks.error(data.errors);
                 };
             };
-
             $.ajax(url, {
                 headers: make_headers(opts),
                 dataType: 'json',

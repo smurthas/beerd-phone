@@ -27,3 +27,8 @@
   margin: 0;
   border-top:1px solid black;
 }
+
+.button {
+  margin-top:10px;
+  float:right;
+}

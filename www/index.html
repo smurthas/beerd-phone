@@ -12,7 +12,6 @@
       $(function() {
         var exb = new ExBeer();
         exb.getExBeeriences(function(err, exbs) {
-          console.error("DEBUG: exbs", exbs);
           for(var i in exbs) {
             try {
               insertExBeer(exbs[i])
@@ -30,28 +29,23 @@
 
       var template = $('.template').clone().html();
       function insertExBeer(exBeer) {
-        // var exBeer;
-        // for(var i in exBeers) exBeer = exBeers[i];
         $('.template').first().clone().appendTo('#exbeers');
         var newOne = $('.exbeer').last();
         newOne.removeClass('template');
-        console.error("DEBUG: newOne", newOne);
-        console.error("DEBUG: exBeer", exBeer);
         // $(newOne).find('.profile-pic').attr('src', exBeer.user && exBeer.user.pic);
         // $(newOne).find('.user-name').attr('src', exBeer.user && exBeer.user.name);
         $(newOne).find('.beer-name').html(exBeer.beer.name);
         $(newOne).find('.brewery-name').html(exBeer.beer.brewery);
         // $(newOne).find('.beer-photo').attr('src', exBeer.beer && exBeer.beer.imageUrl);
-        $(newOne).find('.word0').html(exBeer.words[0]);
-        $(newOne).find('.word1').html(exBeer.words[1]);
-        $(newOne).find('.word2').html(exBeer.words[2]);
-        console.error("DEBUG: newOne", newOne);
+        $(newOne).find('.word0').html(exBeer.words[0] + '.');
+        $(newOne).find('.word1').html(exBeer.words[1] + '.');
+        $(newOne).find('.word2').html(exBeer.words[2] + '.');
       }
 
     </script>
   </head>
   <body>
-    <a href="exbeer.html">share!</a>
+    <div id='header'><span class='button'><a href="exbeer.html">SHARE</a><span></div>
     <div id='exbeers'>
       <div class='exbeer template'>
         <img class='profile-pic' src='https://fbcdn-profile-a.akamaihd.net/hprofile-ak-snc4/275193_5316709_3753828_q.jpg'>

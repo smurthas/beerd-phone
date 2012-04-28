@@ -1,5 +1,5 @@
 body {
-  width:320px;
+  width:300px;
   font-family: Helvetica Neue;
 }
 
@@ -19,4 +19,12 @@ h2 {
 
 .template {
   display:none;
+}
+
+#header {
+  height: 50px;
+}
+
+.button {
+
 }
