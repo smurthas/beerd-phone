@@ -38,6 +38,7 @@
 		F465699B154C701900311CEE /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F465699A154C701900311CEE /* MainViewController.m */; };
 		F465699D154C701900311CEE /* MainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F465699C154C701900311CEE /* MainViewController.xib */; };
 		F46569A1154C701900311CEE /* verify.sh in Resources */ = {isa = PBXBuildFile; fileRef = F46569A0154C701900311CEE /* verify.sh */; };
+		F46569A8154C716800311CEE /* www in Resources */ = {isa = PBXBuildFile; fileRef = F46569A7154C716800311CEE /* www */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -55,10 +56,10 @@
 		F4656963154C701900311CEE /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		F4656965154C701900311CEE /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		F4656967154C701900311CEE /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
-		F465696B154C701900311CEE /* Beerd-Info.plist */ = {isa = PBXFileReference; path = "Beerd-Info.plist"; sourceTree = "<group>"; };
+		F465696B154C701900311CEE /* Beerd-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Beerd-Info.plist"; sourceTree = "<group>"; };
 		F465696D154C701900311CEE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		F465696F154C701900311CEE /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		F4656971154C701900311CEE /* Beerd-Prefix.pch */ = {isa = PBXFileReference; path = "Beerd-Prefix.pch"; sourceTree = "<group>"; };
+		F4656971154C701900311CEE /* Beerd-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Beerd-Prefix.pch"; sourceTree = "<group>"; };
 		F4656972154C701900311CEE /* Cordova.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cordova.framework; path = /Users/Shared/Cordova/Frameworks/Cordova.framework; sourceTree = "<absolute>"; };
 		F4656977154C701900311CEE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = Resources/en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		F465697B154C701900311CEE /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = Resources/es.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -71,13 +72,14 @@
 		F465698F154C701900311CEE /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2x.png"; path = "Resources/splash/Default@2x.png"; sourceTree = "<group>"; };
 		F4656991154C701900311CEE /* Capture.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = Capture.bundle; path = Resources/Capture.bundle; sourceTree = "<group>"; };
 		F4656993154C701900311CEE /* Cordova.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Cordova.plist; sourceTree = "<group>"; };
-		F4656996154C701900311CEE /* AppDelegate.h */ = {isa = PBXFileReference; name = AppDelegate.h; path = Classes/AppDelegate.h; sourceTree = "<group>"; };
+		F4656996154C701900311CEE /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = Classes/AppDelegate.h; sourceTree = "<group>"; };
 		F4656997154C701900311CEE /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = Classes/AppDelegate.m; sourceTree = "<group>"; };
-		F4656999154C701900311CEE /* MainViewController.h */ = {isa = PBXFileReference; name = MainViewController.h; path = Classes/MainViewController.h; sourceTree = "<group>"; };
+		F4656999154C701900311CEE /* MainViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MainViewController.h; path = Classes/MainViewController.h; sourceTree = "<group>"; };
 		F465699A154C701900311CEE /* MainViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = MainViewController.m; path = Classes/MainViewController.m; sourceTree = "<group>"; };
 		F465699C154C701900311CEE /* MainViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = MainViewController.xib; path = Classes/MainViewController.xib; sourceTree = "<group>"; };
-		F465699F154C701900311CEE /* README */ = {isa = PBXFileReference; name = README; path = Plugins/README; sourceTree = "<group>"; };
+		F465699F154C701900311CEE /* README */ = {isa = PBXFileReference; lastKnownFileType = text; name = README; path = Plugins/README; sourceTree = "<group>"; };
 		F46569A0154C701900311CEE /* verify.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = verify.sh; sourceTree = "<group>"; };
+		F46569A7154C716800311CEE /* www */ = {isa = PBXFileReference; lastKnownFileType = folder; path = www; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,6 +117,7 @@
 		F465693D154C701900311CEE = {
 			isa = PBXGroup;
 			children = (
+				F46569A7154C716800311CEE /* www */,
 				F4656969154C701900311CEE /* Beerd */,
 				F465694E154C701900311CEE /* Frameworks */,
 				F465694C154C701900311CEE /* Products */,
@@ -326,6 +329,7 @@
 				F4656994154C701900311CEE /* Cordova.plist in Resources */,
 				F465699D154C701900311CEE /* MainViewController.xib in Resources */,
 				F46569A1154C701900311CEE /* verify.sh in Resources */,
+				F46569A8154C716800311CEE /* www in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
