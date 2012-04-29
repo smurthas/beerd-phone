@@ -5,53 +5,55 @@
 <!--    <script type="text/javascript" charset="utf-8" src="cordova-1.7.0rc1.js"></script> -->
 
     <script type="text/javascript" charset="utf-8" src="js/config.js"></script>
+    <script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
     <script type="text/javascript" charset="utf-8" src="js/cloudmine.js"></script>
     <script type="text/javascript" charset="utf-8" src="js/users.js"></script>
-    <script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
     <script src="cdv-plugin-fb-connect.js"></script>
     <script src="facebook_js_sdk.js"></script>
 
     <script>
-      var users;
-      $(function() {
-        users = new Users();
-      });
+      var users = new Users();
+
       document.addEventListener('deviceready', function() {
         FB.init({
           appId: "360447590670196",
           nativeInterface: CDV.FB,
           useCachedDialogs: false
         });
-
         checkLogin();
       }, false);
 
       function checkLogin() {
         FB.getLoginStatus(function(response) {
           console.error(response);
-          if (response.status == 'connected') {
-
-            console.log('redirect feed.html')
-            window.location = 'feed.html';
-          } else {
-            alert('not logged in');
-          }
+          if (response.status == 'connected') return loggedIn();
+          console.log('not logged in');
         });
       }
-      FB.Event.subscribe('auth.login', function(response) {
-        console.error("DEBUG: event login response" +  JSON.stringify(response));
-        // users.createUser
-        window.location = 'feed.html'
-      });
+
+      function loggedIn() {
+        getFBUser(function(err, fb_user) {
+          users.createUser(fb_user.id, fb_user.name, function(err, b_user) {
+            console.error("DEBUG: createUser:" + JSON.stringify(b_user));
+            window.location = 'feed.html'
+          });
+        });
+      }
 
       function login() {
         FB.login(function(response) {
           console.error("DEBUG:login response" +  JSON.stringify(response));
-          // if (response.session) window.location = 'feed.html'
+          if (response.status === 'connected') return loggedIn();
           // else alert('not logged in');
         }, { scope: "email" });
       }
 
+      function getFBUser(callback) {
+        FB.api('/me', { fields: 'id, name' }, function(response) {
+          if (response.error) return callback(response.error);
+          return callback(null, response);
+        });
+      }
     </script>
   </head>
   <body>

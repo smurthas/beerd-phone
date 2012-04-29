@@ -27,7 +27,7 @@ function ExBeer() {
     console.error("DEBUG: options.fileName: " + options.fileName);
 
     var ft = new FileTransfer();
-    var url = "https://api.cloudmine.me/v1/app/" + appid + "/binary/?apikey=" + apikey;
+    var url = "https://api.cloudmine.me/v1/app/" + window.CONFIG.cloudmine.appid + "/binary/?apikey=" + window.CONFIG.cloudmine.apikey;
     console.log(url);
     ft.upload(fileURI, url, function(success) {
       var uid = JSON.parse(decodeURIComponent(success.response)).key;
@@ -41,7 +41,7 @@ function ExBeer() {
   exbeer.getExBeeriences = function(callback) {
     cloudmine.search('[type="exb"]', function(result, arg2) {
       if(!result.success) return console.error(result.errors);
-      alert(JSON.stringify(result.success));
+      console.log(JSON.stringify(result.success));
       var arr = [];
       result.success.forEach(function(key, value) {
         arr.push(value);

@@ -9,7 +9,8 @@ function Users() {
       name: name,
       following: []
     };
-    users.setUser(users, callback);
+    console.error("DEBUG: createUser user: " + JSON.stringify(user));
+    users.setUser(user, callback);
   }
 
   users.setUser = function(user, callback) {
@@ -20,11 +21,16 @@ function Users() {
     console.error('DEBUG: setUser values ' + JSON.stringify(values));
     cloudmine.setValues(values, function(success) {
       console.log(success);
+      window.localStorage.setItem('user', JSON.stringify(user));
       callback(null, user);
     });
   }
 
-  users.getUser = function(fbid, callback) {
+  users.getUser = function() {
+    return JSON.parse(window.localStorage.getItem('user'));
+  }
+
+  users.getAUser = function(fbid, callback) {
     cloudmine.search('[type="user",fbid="' + fbid + '"]', function(result, arg2) {
       if(!result.success) return console.error(result.errors);
       alert(JSON.stringify(result.success));
