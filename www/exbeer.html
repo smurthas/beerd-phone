@@ -37,6 +37,9 @@
     <script type="text/javascript" charset="utf-8" src="js/camera.js"></script>
     <script type="text/javascript" charset="utf-8" src="js/users.js"></script>
     <script type="text/javascript" charset="utf-8" src="js/exbeer.js"></script>
+
+    <script src="js/libs/cdv-plugin-fb-connect.js"></script>
+    <script src="js/libs/facebook_js_sdk.js"></script>
     <script>
     $(function() {
 
@@ -55,12 +58,9 @@
             });
             // alert(two);
           }, function(fail, three) {
-            console.log('fail');
-            console.log(fail);
-            console.log(three);
           });
         } catch(err) {
-          console.log('Error: '+err.toString());
+          //console.log('Error: '+err.toString());
         }
 
       });
@@ -69,7 +69,7 @@
         var words = [];
         for (var i=0; i < 3; i++) words[i] = $('form #word' + i).val();
         var user = users.getUser();
-        console.error("DEBUG: user:" + JSON.stringify(user));
+        //console.error("DEBUG: user:" + JSON.stringify(user));
         var vals = {
           uid: $("#uid").val(),
           words: words,
@@ -83,14 +83,40 @@
           }
         };
 
-        console.log(JSON.stringify(vals));
+        //console.log(JSON.stringify(vals));
         exb.postExBeerience(vals, function(err, exBeerience) {
-          console.error("DEBUG: err", err);
-          console.error("DEBUG: exBeerience", exBeerience);
+          //console.error("DEBUG: err", err);
+          //console.error("DEBUG: exBeerience", exBeerience);
           window.location = 'feed.html';
         });
         return false;
       })
+
+      document.addEventListener('deviceready', function() {
+        FB.init({
+          appId: "360447590670196",
+          nativeInterface: CDV.FB,
+          useCachedDialogs: false
+        });
+      }, false);
+
+    facebookWallPost = function() {
+    
+     var params = {
+         method: 'feed',
+         name: 'Facebook Dialogs',
+         link: 'https://developers.facebook.com/docs/reference/dialogs/',
+         picture: exb.getImageUrl($("#uid").val()),
+         caption: 'Reference Documentation',
+         description: 'Dialogs provide a simple, consistent interface for applications to interface with users.'
+     };
+     console.log(params);
+     FB.ui(params,
+     function(obj) {
+         console.log(obj);
+     });
+    }
+
     })
     </script>
 </head>
@@ -143,6 +169,7 @@
 
             <div class="form-actions">
               <button type="submit" class="btn btn-primary">Post Your ExBEERience!</button>
+              <button type="button" class="btn" onclick="facebookWallPost();">Post to Facebook</button>
             </div>
       </form>
       <footer>

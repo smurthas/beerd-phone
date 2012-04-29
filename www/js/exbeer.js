@@ -57,7 +57,7 @@ function ExBeer() {
   }
 
   exbeer.getImageUrl = function(objectID) {
-    return cloudmine.getFileURL(objectID.substring(5));
+    return cloudmine.getFileURL(objectID.substring(5), {api_key: window.CONFIG.cloudmine.photoReadKey});
   }
 
   exbeer.__CLEAR_ALL = function(callback) {
