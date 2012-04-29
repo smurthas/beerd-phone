@@ -3,13 +3,13 @@ function Users() {
 
   var users = {};
 
-  users.createUser = function(fbid, name, callback) {
+  users.createUser = function(fbid, name, friends, callback) {
     var user = {
       fbid: fbid,
       name: name,
       following: []
     };
-    console.error("DEBUG: createUser user: " + JSON.stringify(user));
+    for(var i in friends) user.following.push(friends[i].id);
     users.setUser(user, callback);
   }
 
@@ -18,7 +18,7 @@ function Users() {
     var uid = 'user_' + user.fbid;
     values[uid] = user;
     user.type = 'user';
-    console.error('DEBUG: setUser values ' + JSON.stringify(values));
+    // console.error('DEBUG: setUser values ' + JSON.stringify(values));
     cloudmine.setValues(values, function(success) {
       console.log(success);
       window.localStorage.setItem('user', JSON.stringify(user));

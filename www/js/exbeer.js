@@ -39,8 +39,12 @@ function ExBeer() {
     }, options);
   }
 
-  exbeer.getExBeeriences = function(callback) {
-    cloudmine.search('[type="exb"]', function(result, arg2) {
+  exbeer.getExBeeriences = function(userIDs, callback) {
+    // console.error("DEBUG: userIDs", userIDs);
+    var q = '[type="exb"].user[id="5316709" or id="11508107"]';//' or id="' + userIDs.join('" or id="') + '"]';
+    console.error("DEBUG: q: " + q);
+    // cloudmine.search('[type="exb"].user[name="Simon Murtha-Smith"]', function(result, arg2) {
+    cloudmine.search(q, function(result, arg2) {
       if(!result.success) return console.error(result.errors);
       console.log(JSON.stringify(result.success));
       var arr = [];

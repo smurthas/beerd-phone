@@ -31,6 +31,7 @@
     <script type="text/javascript" charset="utf-8" src="js/libs/jquery.js"></script>
     <script type="text/javascript" charset="utf-8" src="js/libs/cloudmine.js"></script>
     <script type="text/javascript" charset="utf-8" src="js/exbeer.js"></script>
+    <script type="text/javascript" charset="utf-8" src="js/users.js"></script>
 
     <script src="js/libs/cdv-plugin-fb-connect.js"></script>
     <script src="js/libs/facebook_js_sdk.js"></script>
@@ -38,7 +39,8 @@
     <script>
       $(function() {
         var exb = new ExBeer();
-        exb.getExBeeriences(function(err, exbs) {
+        var users = new Users();
+        exb.getExBeeriences(users.getUser().following, function(err, exbs) {
           if(err) return alert(err);
           for(var i in exbs) insertExBeer(exbs[i]);
         });

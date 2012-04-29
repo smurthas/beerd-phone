@@ -53,9 +53,9 @@
       }
 
       function loggedIn() {
-        getFBUser(function(err, fb_user) {
-          users.createUser(fb_user.id, fb_user.name, function(err, b_user) {
-            console.error("DEBUG: createUser:" + JSON.stringify(b_user));
+        getFBUser(function(err, fb_user_info) {
+          users.createUser(fb_user_info.me.id, fb_user_info.me.name, fb_user_info.friends, function(err, b_user) {
+            // console.error("DEBUG: createUser:" + JSON.stringify(b_user));
             window.location = 'feed.html'
           });
         });
@@ -70,9 +70,18 @@
       }
 
       function getFBUser(callback) {
-        FB.api('/me', { fields: 'id, name' }, function(response) {
-          if (response.error) return callback(response.error);
-          return callback(null, response);
+        FB.api('/me', { fields: 'id, name' }, function(meResponse) {
+          console.error("DEBUG: meResponse" + JSON.stringify(meResponse));
+          if (meResponse.error) return callback(meResponse.error);
+          FB.api('/me/friends', { fields: 'id, name, first_name, last_name' }, function(friendsResponse) {
+            // console.error("DEBUG: friendsResponse" + JSON.stringify(friendsResponse));
+            if (friendsResponse.error) return callback(friendsResponse.error);
+            var res = {
+              me: meResponse,
+              friends: friendsResponse.data
+            };
+            return callback(null, res);
+          });
         });
       }
     </script>
@@ -108,7 +117,7 @@
           </a>
         </p>
       </header>
-    
+
       <footer>
         <p>&copy; ExBeerience 2012</p>
       </footer>
