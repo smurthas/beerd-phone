@@ -88,7 +88,14 @@
         exb.postExBeerience(vals, function(err, exBeerience) {
           //console.error("DEBUG: err", err);
           //console.error("DEBUG: exBeerience", exBeerience);
-          window.location = 'feed.html';
+
+          //check to see if Facebook has a checkbox selected
+          if($("input[@name=testGroup]:checked").val()){
+            facebookWallPost();
+          }else{
+            window.location = 'feed.html';            
+          }
+
         });
         return false;
       })
@@ -102,21 +109,30 @@
       }, false);
 
     facebookWallPost = function() {
+        var words = [];
+        for (var i=0; i < 3; i++) words[i] = $('form #word' + i).val();
     
      var params = {
          method: 'feed',
-         name: 'Facebook Dialogs',
+         name: 'Share Your ExBeerience',
          link: 'https://developers.facebook.com/docs/reference/dialogs/',
          picture: exb.getImageUrl($("#uid").val()),
-         caption: 'Reference Documentation',
-         description: 'Dialogs provide a simple, consistent interface for applications to interface with users.'
+         caption: $("#beername").val() + ' ' + $("#brewery").val(),
+         description: words
      };
-     console.log(params);
+
      FB.ui(params,
      function(obj) {
          console.log(obj);
      });
     }
+
+    function logout() {
+        FB.logout(function(response) {
+          window.location = 'index.html';
+        });
+      }
+
 
     })
     </script>
@@ -138,6 +154,7 @@
               <li class="active"><a href="feed.html">Home</a></li>
               <li><a href="exbeer.html">Share</a></li>
               <li><a href="about.html">About</a></li>
+              <li><a href="index.html" onclick="logout();">Logout</a></li>
             </ul>
           </div><!--/.nav-collapse -->
         </div>
@@ -148,11 +165,10 @@
 
       <h1>Share your ExBeerience!</h1>
 
-      <form id='form' class="well form-inline">
-
-          <fieldset>
-            <legend>Upload your Photo</legend>
-            <img id="photo" />
+      <form id='form' class="well form-inline" style="padding:10px 5px">
+          <fieldset style="margin: 0 0 0 0">
+            <legend>  </legend>
+            <img id="photo" style="margin: 0 0 0 0" />
 
             <fieldset>
               <legend>Describe it:</legend>
@@ -166,6 +182,9 @@
             </fieldset>
             <input type='text' class='beerinput' id='brewery' placeholder='Brewery...' style="width: 80%" />
             <input type='text' class='beerinput' id='beername' placeholder='Beer Name...' style="width: 80%"/>
+            <label><span>Post to Facebook:</span></label>
+            <label>Yes: </label><input type='radio' name="isPostToFacebookAllowed" value="1" checked="checked" />
+            <label>No: </label><input type='radio' name="isPostToFacebookAllowed" value="0" />
           </fieldset>
 
             <div class="form-actions">
