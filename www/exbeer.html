@@ -26,9 +26,6 @@
   <link rel="stylesheet" type="text/css" charset="utf-8" href="css/style.css" />
   <script src="js/libs/modernizr-2.5.3-respond-1.1.0.min.js"></script>
 
-
-
-
   <script type="text/javascript" charset="utf-8" src="cordova-1.7.0rc1.js"></script>
 
   <script type="text/javascript" charset="utf-8" src="js/config.js"></script>
@@ -48,7 +45,7 @@
 
       $('img').click(function() {
         try {
-          // capturePhoto(function(filepath) {
+          // pickPhoto(function(filepath) {
           capturePhoto(function(filepath) {
             // alert('success');
             $("#photo").attr('src', filepath);
