@@ -1,8 +1,11 @@
 
 img {
-  width: 140px;
-  height:140px;
-  border: 1px solid black;
+  width: 130px;
+  height:130px;
+  border: 1px solid #999;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
   float:left;
 }
 
@@ -28,4 +31,17 @@ input[type=text] {
 
 .word {
   width: 120px;
+}
+
+fieldset {
+  margin:0px;
+}
+
+legend {
+  line-height:22px;
+}
+
+#background-text {
+  display:inline;
+  float:left;
 }
