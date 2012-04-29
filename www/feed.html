@@ -28,14 +28,14 @@
           $('.template').first().clone().appendTo('#exbeers');
           var newOne = $('.exbeer').last();
           newOne.removeClass('template');
-          // $(newOne).find('.profile-pic').attr('src', exBeer.user && exBeer.user.pic);
-          // $(newOne).find('.user-name').attr('src', exBeer.user && exBeer.user.name);
+          $(newOne).find('.profile-pic').attr('src', exBeer.user && exBeer.user.picture);
+          $(newOne).find('.user-name').html(exBeer.user && exBeer.user.name);
           $(newOne).find('.beer-name').html(exBeer.beer.name);
           $(newOne).find('.brewery-name').html(exBeer.beer.brewery);
           $(newOne).find('.beer-photo').attr('src', exb.getImageUrl(exBeer.uid));
-          $(newOne).find('.word0').html(exBeer.words[0] + '.');
-          $(newOne).find('.word1').html(exBeer.words[1] + '.');
-          $(newOne).find('.word2').html(exBeer.words[2] + '.');
+          for(var i in exBeer.words) {
+            if (exBeer.words[i]) $(newOne).find('.word' + i).html(exBeer.words[i] + '.');
+          }
         }
       });
 
@@ -60,15 +60,15 @@
     <div id='header'><span class='button'><a href="#" onclick="logout();">LOG OUT</a>&nbsp;<a href="exbeer.html">SHARE</a><span></div>
     <div id='exbeers'>
       <div class='exbeer template'>
-        <img class='profile-pic' src='https://fbcdn-profile-a.akamaihd.net/hprofile-ak-snc4/275193_5316709_3753828_q.jpg'>
-        <div class='top-info'><h2 class='user-name'>Simon Murtha-Smith</h2>
-        <h2><span class='beer-name'>Classic Red</span>, <span class='brewery-name'>Rodenbach</span></h2></div>
+        <img class='profile-pic' src=''>
+        <div class='top-info'><h2 class='user-name'></h2>
+        <h2><span class='beer-name'>Classic Red</span>, <span class='brewery-name'></span></h2></div>
         <div class='clear'>&nbsp;</div>
-        <img class='beer-photo' src='http://www.donosborn.com/homebrew/rodenbach.jpg'>
+        <img class='beer-photo' src=''>
         <div class='words'>
-          <div class='word0 word'>SOOOOUR!</div>
-          <div class='word1 word'>Bold</div>
-          <div class='word2 word'>Smiley</div>
+          <div class='word0 word'></div>
+          <div class='word1 word'></div>
+          <div class='word2 word'></div>
         </div>
         <div class='clear'>&nbsp;</div>
       </div>
