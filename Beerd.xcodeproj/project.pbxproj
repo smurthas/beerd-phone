@@ -373,6 +373,9 @@
 /* Begin PBXProject section */
 		F465693F154C701900311CEE /* Project object */ = {
 			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0420;
+			};
 			buildConfigurationList = F4656942154C701900311CEE /* Build configuration list for PBXProject "Beerd" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
@@ -596,9 +599,7 @@
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				FRAMEWORK_SEARCH_PATHS = /Users/Shared/Cordova/Frameworks;
-				"FRAMEWORK_SEARCH_PATHS[arch=*]" = (
-					/Users/Shared/Cordova/Frameworks/Cordova.framework/Headers,
-				);
+				"FRAMEWORK_SEARCH_PATHS[arch=*]" = /Users/Shared/Cordova/Frameworks/Cordova.framework/Headers;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Beerd/Beerd-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
