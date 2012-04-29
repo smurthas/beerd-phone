@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<widget xmlns		= "http://www.w3.org/ns/widgets"
+	xmlns:gap	= "http://phonegap.com/ns/1.0"
+	id		= "com.phonegap.getting.started"
+	version 	= "1.7.0">
+
+	<name>ExBeerience</name>
+
+	<description>
+		A better way to drink beer.
+	</description>
+
+	<author href="http://exbeerience.me"
+		email="nobody@exbeereince.me">
+		Robert Haydock	
+	</author>
+
+	<feature name="http://api.phonegap.com/1.0/camera" />
+	<feature name="http://api.phonegap.com/1.0/file" />
+	<feature name="http://api.phonegap.com/1.0/network" />
+	<preference name="android-minSdkVersion" value="8" />
+	<preference name="orientation" value="portrait" />
+</widget>
