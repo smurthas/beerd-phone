@@ -11,7 +11,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width">
 
   <link rel="stylesheet" href="css/bootstrap.min.css">
   <style>
@@ -30,57 +30,12 @@
     <script type="text/javascript" charset="utf-8" src="js/libs/jquery.js"></script>
     <script type="text/javascript" charset="utf-8" src="js/libs/cloudmine.js"></script>
     <script type="text/javascript" charset="utf-8" src="js/users.js"></script>
-    <script src="js/libs/cdv-plugin-fb-connect.js"></script>
-    <script src="js/libs/facebook_js_sdk.js"></script>
-    <script>
-      var users = new Users();
-
-      document.addEventListener('deviceready', function() {
-        FB.init({
-          appId: "360447590670196",
-          nativeInterface: CDV.FB,
-          useCachedDialogs: false
-        });
-        checkLogin();
-      }, false);
-
-      function checkLogin() {
-        FB.getLoginStatus(function(response) {
-          console.error(response);
-          if (response.status == 'connected') return loggedIn();
-          console.log('not logged in');
-        });
-      }
-
-      function loggedIn() {
-        getFBUser(function(err, fb_user) {
-          users.createUser(fb_user.id, fb_user.name, function(err, b_user) {
-            console.error("DEBUG: createUser:" + JSON.stringify(b_user));
-            window.location = 'feed.html'
-          });
-        });
-      }
-
-      function login() {
-        FB.login(function(response) {
-          console.error("DEBUG:login response" +  JSON.stringify(response));
-          if (response.status === 'connected') return loggedIn();
-          // else alert('not logged in');
-        }, { scope: "email" });
-      }
-
-      function getFBUser(callback) {
-        FB.api('/me', { fields: 'id, name' }, function(response) {
-          if (response.error) return callback(response.error);
-          return callback(null, response);
-        });
-      }
-    </script>
+    
 </head>
 <body>
 <!--[if lt IE 7]><p class=chromeframe>Your browser is <em>ancient!</em> <a href="http://browsehappy.com/">Upgrade to a different browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.</p><![endif]-->
 
-        <div class="navbar navbar-fixed-top">
+     <div class="navbar navbar-fixed-top">
       <div class="navbar-inner">
         <div class="container">
           <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
@@ -101,16 +56,11 @@
     </div>
 
     <div class="container">
-      <header>
-        <p>
-          <a class="btn btn-primary btn-large" href="#" onclick="login();">
-          Login
-          </a>
-        </p>
-      </header>
-    
-      <footer>
-        <p>&copy; ExBeerience 2012</p>
+      <h1>About Us</h1>
+      <p></p>
+    </div>
+ <footer>
+        <p>&copy; Company 2012</p>
       </footer>
 
     </div> <!-- /container -->
