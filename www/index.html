@@ -71,13 +71,11 @@
 
       function getFBUser(callback) {
         FB.api('/me', { fields: 'id, name' }, function(meResponse) {
-          console.error("DEBUG: meResponse" + JSON.stringify(meResponse));
+          // console.error("DEBUG: meResponse" + JSON.stringify(meResponse));
           if (meResponse.error) return callback(meResponse.error);
-          // FB.api('/me/friends', { fields: 'id, name, first_name, last_name' }, function(friendsResponse) {
           var q = 'SELECT uid, name, first_name, last_name FROM user WHERE is_app_user = \'1\' AND uid IN (SELECT uid2 FROM friend WHERE uid1 = \'' + meResponse.id + '\');';
-          // alert(q);
           FB.api('/fql', { q: q }, function(friendsResponse) {
-            console.error("DEBUG: friendsResponse" + JSON.stringify(friendsResponse));
+            // console.error("DEBUG: friendsResponse" + JSON.stringify(friendsResponse));
             if (friendsResponse.error) return callback(friendsResponse.error);
             var res = {
               me: meResponse,
