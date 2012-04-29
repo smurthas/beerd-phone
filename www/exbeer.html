@@ -7,6 +7,7 @@
     <link rel="stylesheet" type="text/css" charset="utf-8" href="css/exbeer.css" />
     <link rel="stylesheet" type="text/css" charset="utf-8" href="css/style.css" />
     <script type="text/javascript" charset="utf-8" src="js/cordova-1.7.0rc1.js"></script>
+<!--    <script type="text/javascript" charset="utf-8" src="cordova-1.7.0rc1.js"></script> -->
     <script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
     <script type="text/javascript" charset="utf-8" src="js/cloudmine.js"></script>
     <script type="text/javascript" charset="utf-8" src="js/camera.js"></script>
@@ -18,7 +19,8 @@
 
       $('img').click(function() {
         try {
-          pickPhoto(function(filepath) {
+          capturePhoto(function(filepath) {
+          // pickPhoto(function(filepath) {
             // alert('success');
             $("#photo").attr('src', filepath);
             exb.postPhoto(filepath, function(err, uid) {
