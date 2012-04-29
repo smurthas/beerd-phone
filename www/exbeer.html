@@ -89,9 +89,12 @@
           //console.error("DEBUG: err", err);
           //console.error("DEBUG: exBeerience", exBeerience);
 
+          console.log('current value' + $("input[@name=testGroup]:checked").val())
+
+
           //check to see if Facebook has a checkbox selected
-          if($("input[@name=testGroup]:checked").val()){
-            facebookWallPost();
+          if($("input[@name=testGroup]:checked").val() === '1'){
+            facebookWallPost();    
           }else{
             window.location = 'feed.html';            
           }
@@ -109,22 +112,29 @@
       }, false);
 
     facebookWallPost = function() {
+
+console.log('hello facebook');
+
         var words = [];
         for (var i=0; i < 3; i++) words[i] = $('form #word' + i).val();
     
-     var params = {
-         method: 'feed',
-         name: 'Share Your ExBeerience',
-         link: 'https://developers.facebook.com/docs/reference/dialogs/',
-         picture: exb.getImageUrl($("#uid").val()),
-         caption: $("#beername").val() + ' ' + $("#brewery").val(),
-         description: words
-     };
+         var params = {
+             method: 'feed',
+             name: 'Share Your ExBeerience',
+             link: 'https://developers.facebook.com/docs/reference/dialogs/',
+             picture: exb.getImageUrl($("#uid").val()),
+             caption: $("#beername").val() + ' ' + $("#brewery").val(),
+             description: words[0] + ' ' + words[1] + ' ' + words[2],
+             redirect_uri: 'feed.html'
+         };
 
-     FB.ui(params,
-     function(obj) {
-         console.log(obj);
-     });
+         FB.ui(params,
+         function(response) {
+        });
+
+         return true;
+
+
     }
 
     function logout() {
@@ -189,7 +199,6 @@
 
             <div class="form-actions">
               <button type="submit" class="btn btn-primary">Post Your ExBEERience!</button>
-              <button type="button" class="btn" onclick="facebookWallPost();">Post to Facebook</button>
             </div>
       </form>
       <footer>
