@@ -24,6 +24,7 @@ function ExBeer() {
     // this value will determine what content-type is used
     // when the file is retrieved from CloudMine
     options.mimeType = "image/jpg";
+    options.chunkedMode = false;
     console.error("DEBUG: options.fileName: " + options.fileName);
 
     var ft = new FileTransfer();
