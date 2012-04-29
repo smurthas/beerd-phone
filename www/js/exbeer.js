@@ -39,18 +39,42 @@ function ExBeer() {
     }, options);
   }
 
-  exbeer.getExBeeriences = function(callback) {
-    cloudmine.search('[type="exb"]', function(result, arg2) {
+  var perPage = 50;
+  exbeer.getExBeeriences = function(userIDs, callback) {
+    var j = 0;
+    var arrs = [];
+    while (j*perPage < userIDs.length) {
+      arrs[j] = userIDs.slice(j*perPage, (j+1) * perPage);
+      j++;
+    }
+    var vals = [];
+    // alert("DEBUG: arrs:  " + JSON.stringify(arrs));
+    async.forEach(arrs, function(userIDsPage, cb) {
+      // console.error("DEBUG: userIDsPage" + userIDsPage.length);
+      exbeer.getExBeeriencesPage(userIDsPage, function(err, posts) {
+        if (err) return cb(err);
+        vals = vals.concat(posts);
+        cb();
+      });
+    }, function(err) {
+      vals.sort(function(a, b) {
+        if (a.timeStamp < b.timeStamp) return 1;
+        if (a.timeStamp > b.timeStamp) return -1;
+        return 0;
+      });
+      callback(null, vals);
+    });
+
+  }
+
+  exbeer.getExBeeriencesPage = function(userIDs, callback) {
+    var q = '[type="exb"].user[id="' + userIDs.join('" or id="') + '"]';
+    cloudmine.search(q, function(result, arg2) {
       if(!result.success) return console.error(result.errors);
       console.log(JSON.stringify(result.success));
       var arr = [];
       result.success.forEach(function(key, value) {
         arr.push(value);
-      });
-      arr.sort(function(a, b) {
-        if (a.timeStamp < b.timeStamp) return 1;
-        if (a.timeStamp > b.timeStamp) return -1;
-        return 0;
       });
       callback(null, arr);
     });

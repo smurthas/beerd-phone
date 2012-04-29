@@ -28,9 +28,11 @@
     <script type="text/javascript" charset="utf-8" src="js/libs/cordova-1.7.0rc1.js"></script>
 
     <script type="text/javascript" charset="utf-8" src="js/config.js"></script>
+    <script type="text/javascript" charset="utf-8" src="js/libs/async.js"></script>
     <script type="text/javascript" charset="utf-8" src="js/libs/jquery.js"></script>
     <script type="text/javascript" charset="utf-8" src="js/libs/cloudmine.js"></script>
     <script type="text/javascript" charset="utf-8" src="js/exbeer.js"></script>
+    <script type="text/javascript" charset="utf-8" src="js/users.js"></script>
 
     <script src="js/libs/cdv-plugin-fb-connect.js"></script>
     <script src="js/libs/facebook_js_sdk.js"></script>
@@ -38,7 +40,10 @@
     <script>
       $(function() {
         var exb = new ExBeer();
-        exb.getExBeeriences(function(err, exbs) {
+        var users = new Users();
+        var user = users.getUser();
+
+        exb.getExBeeriences(user.following.concat([user.fbid]), function(err, exbs) {
           if(err) return alert(err);
           for(var i in exbs) insertExBeer(exbs[i]);
         });
