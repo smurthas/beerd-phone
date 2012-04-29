@@ -92,6 +92,21 @@ function ExBeer() {
     })
   }
 
+  exbeer.favorite = function(objectID, userID, callback) {
+    console.log(objectID);
+    console.log(userID);
+    cloudmine.updateValue(objectID, {
+      favorites: {
+        __type__: 'op',
+        op: 'append_if_unique',
+        value: userID
+      }
+    }, function(result) {
+      console.error("DEBUG: result" + JSON.stringify(result));
+      callback();
+    });
+  }
+
   return exbeer;
 }
 
