@@ -28,7 +28,9 @@ function ExBeer() {
     console.error("DEBUG: options.fileName: " + options.fileName);
 
     var ft = new FileTransfer();
-    var url = "https://api.cloudmine.me/v1/app/" + window.CONFIG.cloudmine.appid + "/binary/?apikey=" + window.CONFIG.cloudmine.apikey;
+    //var url = "https://api.cloudmine.me/v1/app/" + window.CONFIG.cloudmine.appid + "/binary/?apikey=" + window.CONFIG.cloudmine.apikey;
+    var url = "http://nosslapi.cloudmine.me/v1/app/" + window.CONFIG.cloudmine.appid + "/binary/?apikey=" + window.CONFIG.cloudmine.apikey;
+    
     console.log(url);
     ft.upload(fileURI, url, function(success) {
       var uid = JSON.parse(decodeURIComponent(success.response)).key;
@@ -102,7 +104,23 @@ function ExBeer() {
         value: userID
       }
     }, function(result) {
-      console.error("DEBUG: result" + JSON.stringify(result));
+      // console.error("DEBUG: result" + JSON.stringify(result));
+      callback();
+    });
+  }
+
+
+  exbeer.unfavorite = function(objectID, userID, callback) {
+    console.log(objectID);
+    console.log(userID);
+    cloudmine.updateValue(objectID, {
+      favorites: {
+        __type__: 'op',
+        op: 'remove',
+        value: userID
+      }
+    }, function(result) {
+      // console.error("DEBUG: result" + JSON.stringify(result));
       callback();
     });
   }
