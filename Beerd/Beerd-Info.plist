@@ -45,5 +45,16 @@
 	<string></string>
 	<key>NSMainNibFile~ipad</key>
 	<string></string>
+    <key>CFBundleURLTypes</key>
+    <array>
+        <dict>
+            <key>CFBundleURLName</key>
+            <string>com.facebook.phonegap.exbeerience</string>
+            <key>CFBundleURLSchemes</key>
+            <array>
+                <string>fb360447590670196</string>
+            </array>
+        </dict>
+    </array>
 </dict>
 </plist>
