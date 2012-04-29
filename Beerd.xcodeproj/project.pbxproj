@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CE9620A9154DEA1300EBDAA6 /* logo_57_57.png in Resources */ = {isa = PBXBuildFile; fileRef = CE9620A8154DEA1300EBDAA6 /* logo_57_57.png */; };
+		CE9620AC154DEA2100EBDAA6 /* icon_114_114.png in Resources */ = {isa = PBXBuildFile; fileRef = CE9620AB154DEA2100EBDAA6 /* icon_114_114.png */; };
+		CE9620AE154DEA3800EBDAA6 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = CE9620AD154DEA3800EBDAA6 /* Default.png */; };
+		CE9620B0154DEA4500EBDAA6 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CE9620AF154DEA4500EBDAA6 /* Default@2x.png */; };
+		CE9620B2154DEABF00EBDAA6 /* icon_72_72.png in Resources */ = {isa = PBXBuildFile; fileRef = CE9620B1154DEABE00EBDAA6 /* icon_72_72.png */; };
+		CE9620B4154DEAD400EBDAA6 /* Default-Portrait~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = CE9620B3154DEAD400EBDAA6 /* Default-Portrait~ipad.png */; };
 		F4656950154C701900311CEE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F465694F154C701900311CEE /* Foundation.framework */; };
 		F4656952154C701900311CEE /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4656951154C701900311CEE /* UIKit.framework */; };
 		F4656954154C701900311CEE /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4656953154C701900311CEE /* CoreGraphics.framework */; };
@@ -55,6 +61,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		CE9620A8154DEA1300EBDAA6 /* logo_57_57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo_57_57.png; sourceTree = "<group>"; };
+		CE9620AB154DEA2100EBDAA6 /* icon_114_114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_114_114.png; sourceTree = "<group>"; };
+		CE9620AD154DEA3800EBDAA6 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		CE9620AF154DEA4500EBDAA6 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		CE9620B1154DEABE00EBDAA6 /* icon_72_72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_72_72.png; sourceTree = "<group>"; };
+		CE9620B3154DEAD400EBDAA6 /* Default-Portrait~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Portrait~ipad.png"; sourceTree = "<group>"; };
 		F465694B154C701900311CEE /* Beerd.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Beerd.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F465694F154C701900311CEE /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		F4656951154C701900311CEE /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -157,6 +169,12 @@
 		F465693D154C701900311CEE = {
 			isa = PBXGroup;
 			children = (
+				CE9620B3154DEAD400EBDAA6 /* Default-Portrait~ipad.png */,
+				CE9620B1154DEABE00EBDAA6 /* icon_72_72.png */,
+				CE9620AF154DEA4500EBDAA6 /* Default@2x.png */,
+				CE9620AD154DEA3800EBDAA6 /* Default.png */,
+				CE9620AB154DEA2100EBDAA6 /* icon_114_114.png */,
+				CE9620A8154DEA1300EBDAA6 /* logo_57_57.png */,
 				F46569A7154C716800311CEE /* www */,
 				F4656969154C701900311CEE /* Beerd */,
 				F465694E154C701900311CEE /* Frameworks */,
@@ -417,6 +435,12 @@
 				F46569A1154C701900311CEE /* verify.sh in Resources */,
 				F46569A8154C716800311CEE /* www in Resources */,
 				F4962711154CE36F00D3A861 /* FBDialog.bundle in Resources */,
+				CE9620A9154DEA1300EBDAA6 /* logo_57_57.png in Resources */,
+				CE9620AC154DEA2100EBDAA6 /* icon_114_114.png in Resources */,
+				CE9620AE154DEA3800EBDAA6 /* Default.png in Resources */,
+				CE9620B0154DEA4500EBDAA6 /* Default@2x.png in Resources */,
+				CE9620B2154DEABF00EBDAA6 /* icon_72_72.png in Resources */,
+				CE9620B4154DEAD400EBDAA6 /* Default-Portrait~ipad.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
