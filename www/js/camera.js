@@ -1,5 +1,5 @@
     var pictureSource;   // picture source
-    var destinationType; // sets the format of returned value 
+    var destinationType; // sets the format of returned value
 
     // Wait for PhoneGap to connect with the device
     //
@@ -8,6 +8,7 @@
     // PhoneGap is ready to be used!
     //
     function onDeviceReady() {
+        console.log('ready')
         pictureSource=navigator.camera.PictureSourceType;
         destinationType=navigator.camera.DestinationType;
     }
@@ -17,8 +18,8 @@
     function onPhotoDataSuccess(imageData) {
       // Uncomment to view the base64 encoded image data
       console.log(imageData);
-      alert('base64 data recieved')
-      alert(imageData.toString());
+      console.log('base64 data recieved')
+      console.log(imageData.toString());
 
       // Get image handle
       //
@@ -37,8 +38,8 @@
     // Called when a photo is successfully retrieved
     //
     function onPhotoURISuccess(imageURI) {
-      // Uncomment to view the image file URI 
-      alert(imageURI.toString());
+      // Uncomment to view the image file URI
+      console.log(imageURI.toString());
        console.log(imageURI);
 
       // Get image handle
@@ -65,21 +66,28 @@
     // A button will call this function
     //
     function capturePhotoEdit() {
-      // Take picture using device camera, allow edit, and retrieve image as base64-encoded string  
-      navigator.camera.getPicture(onPhotoDataSuccess, onFail, { quality: 10, allowEdit: true }); 
+      // Take picture using device camera, allow edit, and retrieve image as base64-encoded string
+      navigator.camera.getPicture(onPhotoDataSuccess, onFail, { quality: 10, allowEdit: true });
     }
 
     // A button will call this function
     //
     function getPhoto(source) {
       // Retrieve image file location from specified source
-      navigator.camera.getPicture(onPhotoURISuccess, onFail, { quality: 10, 
+      navigator.camera.getPicture(onPhotoURISuccess, onFail, { quality: 10,
         destinationType: destinationType.FILE_URI,
         sourceType: source });
     }
 
+    function pickPhoto(onSuccess, onFail) {
+        // Retrieve image file location from specified source
+        navigator.camera.getPicture(onSuccess, onFail, { quality: 10,
+          destinationType: destinationType.FILE_URI,
+          sourceType: pictureSource.PHOTOLIBRARY });
+    }
+
     // Called if something bad happens.
-    // 
+    //
     function onFail(message) {
       alert('Failed because: ' + message);
     }

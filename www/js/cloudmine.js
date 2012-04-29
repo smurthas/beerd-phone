@@ -449,7 +449,6 @@
 
                 callback(data);
             };
-
             $.ajax(url, {
                 headers: make_headers(opts),
                 dataType: 'json',

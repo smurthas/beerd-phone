@@ -6,7 +6,7 @@
     </title>
     <link rel="stylesheet" type="text/css" charset="utf-8" href="css/exbeer.css" />
     <link rel="stylesheet" type="text/css" charset="utf-8" href="css/style.css" />
-    <script type="text/javascript" charset="utf-8" src="cordova-1.7.0rc1.js"></script>
+    <script type="text/javascript" charset="utf-8" src="js/cordova-1.7.0rc1.js"></script>
     <script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
     <script type="text/javascript" charset="utf-8" src="js/cloudmine.js"></script>
     <script type="text/javascript" charset="utf-8" src="js/camera.js"></script>
@@ -18,24 +18,38 @@
 
       $('img').click(function() {
         try {
-          capturePhoto();
+          pickPhoto(function(filepath) {
+            // alert('success');
+            $("#photo").attr('src', filepath);
+            exb.postPhoto(filepath, function(err, uid) {
+              console.log('postPhoto success uid:' + uid);
+              $("#uid").val(uid);
+            });
+            // alert(two);
+          }, function(fail, three) {
+            console.log('fail');
+            console.log(fail);
+            console.log(three);
+          });
         } catch(err) {
-          alert('Error: '+err.toString());
+          console.log('Error: '+err.toString());
         }
-        
+
       });
       $('#form').submit(function(evt) {
         evt.preventDefault();
         var words = [];
         for (var i=0; i < 3; i++) words[i] = $('form #word' + i).val();
         var vals = {
+          uid: $("#uid").val(),
           words: words,
           beer: {
             name: $("#beername").val(),
             brewery: $("#brewery").val()
           }
         };
-        alert(JSON.stringify(vals));
+
+        console.log(JSON.stringify(vals));
         exb.postExBeerience(vals, function(err, exBeerience) {
           console.error("DEBUG: err", err);
           console.error("DEBUG: exBeerience", exBeerience);
@@ -51,6 +65,7 @@
     <form id='form'>
       <div class='words'>
         <h2>Describe it:</h2>
+        <input type='hidden' name='uid' id='uid' />
         <input type='text' class='word' id='word0' placeholder='Purple.'/>
         <input type='text' class='word' id='word1' placeholder='Tall.'/>
         <input type='text' class='word' id='word2' placeholder='Insightful.'/>
