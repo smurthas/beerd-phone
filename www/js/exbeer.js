@@ -1,9 +1,5 @@
-var appid = "cd6fbde210a9429eaecf45ab61553bf6";
-var apikey = "d834bb688831463d8de581eb8130a63f";
-
-
 function ExBeer() {
-  cloudmine.init({app_id: appid, api_key: apikey});
+  cloudmine.init({app_id: window.CONFIG.cloudmine.appid, api_key: window.CONFIG.cloudmine.apikey});
 
   var exbeer = {};
 
