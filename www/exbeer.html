@@ -19,8 +19,8 @@
 
       $('img').click(function() {
         try {
-          capturePhoto(function(filepath) {
-          // pickPhoto(function(filepath) {
+          // capturePhoto(function(filepath) {
+          pickPhoto(function(filepath) {
             // alert('success');
             $("#photo").attr('src', filepath);
             exb.postPhoto(filepath, function(err, uid) {

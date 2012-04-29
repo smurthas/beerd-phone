@@ -11,6 +11,7 @@ function ExBeer() {
     var values = {};
     values[exb.uid] = exb;
     exb.type = 'exb';
+    exb.timeStamp = Date.now();
     console.error("DEBUG: values " + JSON.stringify(values));
     cloudmine.setValues(values, function(success) {
       console.log(success);
@@ -19,16 +20,17 @@ function ExBeer() {
   }
 
   exbeer.postPhoto = function(fileURI, callback) {
+    console.error("DEBUG: fileURI: " + fileURI);
     var options = new FileUploadOptions();
     // this is required, and MUST be "file"
     options.fileKey = "file";
-    options.fileName=fileURI.substr(fileURI.lastIndexOf('/')+1);
+    options.fileName = fileURI.substr(fileURI.lastIndexOf('/')+1);
     // this value will determine what content-type is used
     // when the file is retrieved from CloudMine
     options.mimeType = "image/jpg";
+    console.error("DEBUG: options.fileName: " + options.fileName);
 
     var ft = new FileTransfer();
-    // alert('uploading!');
     var url = "https://api.cloudmine.me/v1/app/" + appid + "/binary/?apikey=" + apikey;
     console.log(url);
     ft.upload(fileURI, url, function(success) {
@@ -43,11 +45,17 @@ function ExBeer() {
   exbeer.getExBeeriences = function(callback) {
     cloudmine.search('[type="exb"]', function(result, arg2) {
       if(!result.success) return console.error(result.errors);
-      var objs = {};
+      alert(JSON.stringify(result.success));
+      var arr = [];
       result.success.forEach(function(key, value) {
-        objs[key] = value;
+        arr.push(value);
       });
-      callback(null, objs);
+      arr.sort(function(a, b) {
+        if (a.timeStamp < b.timeStamp) return 1;
+        if (a.timeStamp > b.timeStamp) return -1;
+        return 0;
+      });
+      callback(null, arr);
     });
   }
 

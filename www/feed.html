@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Capture Photo</title>
+    <link rel="stylesheet" type="text/css" charset="utf-8" href="css/style.css" />
+    <link rel="stylesheet" type="text/css" charset="utf-8" href="css/feed.css" />
+    <script type="text/javascript" charset="utf-8" src="js/cordova-1.7.0rc1.js"></script>
+<!--    <script type="text/javascript" charset="utf-8" src="cordova-1.7.0rc1.js"></script> -->
+
+    <script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+    <script type="text/javascript" charset="utf-8" src="js/cloudmine.js"></script>
+    <script type="text/javascript" charset="utf-8" src="js/exbeer.js"></script>
+
+    <script src="cdv-plugin-fb-connect.js"></script>
+    <script src="facebook_js_sdk.js"></script>
+
+    <script>
+      $(function() {
+        alert('feed!')
+        var exb = new ExBeer();
+        exb.getExBeeriences(function(err, exbs) {
+          if(err) return alert(err);
+          for(var i in exbs) insertExBeer(exbs[i]);
+        });
+
+        var template = $('.template').clone().html();
+        function insertExBeer(exBeer) {
+          $('.template').first().clone().appendTo('#exbeers');
+          var newOne = $('.exbeer').last();
+          newOne.removeClass('template');
+          // $(newOne).find('.profile-pic').attr('src', exBeer.user && exBeer.user.pic);
+          // $(newOne).find('.user-name').attr('src', exBeer.user && exBeer.user.name);
+          $(newOne).find('.beer-name').html(exBeer.beer.name);
+          $(newOne).find('.brewery-name').html(exBeer.beer.brewery);
+          $(newOne).find('.beer-photo').attr('src', exb.getImageUrl(exBeer.uid));
+          $(newOne).find('.word0').html(exBeer.words[0] + '.');
+          $(newOne).find('.word1').html(exBeer.words[1] + '.');
+          $(newOne).find('.word2').html(exBeer.words[2] + '.');
+        }
+      });
+
+      function logout() {
+        FB.logout(function(response) {
+          window.location = 'index.html';
+        });
+      }
+
+      document.addEventListener('deviceready',
+        function() {
+          FB.init({
+            appId: "360447590670196",
+            nativeInterface: CDV.FB,
+            useCachedDialogs: false
+          });
+        },
+      false);
+    </script>
+  </head>
+  <body>
+    <div id='header'><span class='button'><a href="#" onclick="logout();">LOG OUT</a>&nbsp;<a href="exbeer.html">SHARE</a><span></div>
+    <div id='exbeers'>
+      <div class='exbeer template'>
+        <img class='profile-pic' src='https://fbcdn-profile-a.akamaihd.net/hprofile-ak-snc4/275193_5316709_3753828_q.jpg'>
+        <div class='top-info'><h2 class='user-name'>Simon Murtha-Smith</h2>
+        <h2><span class='beer-name'>Classic Red</span>, <span class='brewery-name'>Rodenbach</span></h2></div>
+        <div class='clear'>&nbsp;</div>
+        <img class='beer-photo' src='http://www.donosborn.com/homebrew/rodenbach.jpg'>
+        <div class='words'>
+          <div class='word0 word'>SOOOOUR!</div>
+          <div class='word1 word'>Bold</div>
+          <div class='word2 word'>Smiley</div>
+        </div>
+        <div class='clear'>&nbsp;</div>
+      </div>
+    </div>
+  </body>
+</html>
