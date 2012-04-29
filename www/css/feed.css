@@ -1,6 +1,7 @@
 .beer-photo {
+  display: inline-block;
   width:140px;
-  max-height:140px;
+/*  max-height:140px;*/
   float:left;
 }
 
@@ -35,4 +36,21 @@
 .thumbnail {
   border:none;
   box-shadow:none;
+}
+
+.favorite-icon {
+  width:16px;
+}
+
+.favorite-person {
+  width:16px;
+  margin-right:3px;
+}
+
+.exbeer {
+/*  border: 1px solid black;*/
+}
+
+.divider {
+  border-bottom: 1px solid #777;
 }

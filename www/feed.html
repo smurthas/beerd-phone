@@ -47,11 +47,6 @@
           if(err) return alert(err);
           for(var i in exbs) insertExBeer(exbs[i]);
         });
-        //
-        // $('body').delegate('.beer-photo', 'click', function(evt) {
-        //   alert('click!');
-        //   console.log(evt);
-        // });
 
         var template = $('.template').clone().html();
         function insertExBeer(exBeer) {
@@ -64,12 +59,26 @@
           $(newOne).find('.brewery-name').html(exBeer.beer.brewery);
           $(newOne).find('.beer-photo').attr('src', exb.getImageUrl(exBeer.uid)).click(function(evt) {
             exb.favorite(exBeer.uid, user.fbid, function() {
-              alert('favorited!');
+              addFavoriteHTML(newOne, user.fbid);
             })
           });
           for(var i in exBeer.words) {
             if (exBeer.words[i]) $(newOne).find('.word' + i).html(exBeer.words[i] + '.');
           }
+          if (exBeer.favorites && exBeer.favorites.length > 0) {
+            for (var i in exBeer.favorites) addFavoriteHTML(newOne, exBeer.favorites[i]);
+          } else {
+            $(newOne).find('.favorites').hide();
+          }
+        }
+
+        function addFavoriteHTML(newOne, fbid) {
+          var favs = $(newOne).find('.favorites');
+          favs.show();
+          $(favs).find('.favorite-person').last().clone().appendTo(favs);
+          var url = 'https://graph.facebook.com/' + fbid + '/picture';
+          var newFav = $(favs).find('.favorite-person').last().attr('src', url);
+          $(newFav).removeClass('template');
         }
 
       });
@@ -146,7 +155,13 @@
                   </div>
                 </div>
               </div>
+              <div class='clear'></div>
+              <div class='favorites'>
+                <img class='favorite-icon' src='img/heart.png' >
+                <img class='template favorite-person' src='' >
+              </div>
             </div>
+            <div class='divider clear'>&nbsp;</div>
           </div>
         </ul>
 
