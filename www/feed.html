@@ -47,6 +47,11 @@
           if(err) return alert(err);
           for(var i in exbs) insertExBeer(exbs[i]);
         });
+        //
+        // $('body').delegate('.beer-photo', 'click', function(evt) {
+        //   alert('click!');
+        //   console.log(evt);
+        // });
 
         var template = $('.template').clone().html();
         function insertExBeer(exBeer) {
@@ -57,11 +62,16 @@
           $(newOne).find('.user-name').html(exBeer.user && exBeer.user.name);
           $(newOne).find('.beer-name').html(exBeer.beer.name);
           $(newOne).find('.brewery-name').html(exBeer.beer.brewery);
-          $(newOne).find('.beer-photo').attr('src', exb.getImageUrl(exBeer.uid));
+          $(newOne).find('.beer-photo').attr('src', exb.getImageUrl(exBeer.uid)).click(function(evt) {
+            exb.favorite(exBeer.uid, user.fbid, function() {
+              alert('favorited!');
+            })
+          });
           for(var i in exBeer.words) {
             if (exBeer.words[i]) $(newOne).find('.word' + i).html(exBeer.words[i] + '.');
           }
         }
+
       });
 
       function logout() {
@@ -127,7 +137,7 @@
                 </div>
               </div>
               <div class="thumbnail">
-                <img class='beer-photo' src='' ><br />
+                <img class='beer-photo' src='' >
                 <div class="caption">
                   <div class='words'>
                     <p class='word0 word'></p>
