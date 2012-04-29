@@ -39,22 +39,42 @@ function ExBeer() {
     }, options);
   }
 
+  var perPage = 50;
   exbeer.getExBeeriences = function(userIDs, callback) {
-    // console.error("DEBUG: userIDs", userIDs);
-    var q = '[type="exb"].user[id="5316709" or id="11508107"]';//' or id="' + userIDs.join('" or id="') + '"]';
-    console.error("DEBUG: q: " + q);
-    // cloudmine.search('[type="exb"].user[name="Simon Murtha-Smith"]', function(result, arg2) {
+    var j = 0;
+    var arrs = [];
+    while (j*perPage < userIDs.length) {
+      arrs[j] = userIDs.slice(j*perPage, (j+1) * perPage);
+      j++;
+    }
+    var vals = [];
+    // alert("DEBUG: arrs:  " + JSON.stringify(arrs));
+    async.forEach(arrs, function(userIDsPage, cb) {
+      // console.error("DEBUG: userIDsPage" + userIDsPage.length);
+      exbeer.getExBeeriencesPage(userIDsPage, function(err, posts) {
+        if (err) return cb(err);
+        vals = vals.concat(posts);
+        cb();
+      });
+    }, function(err) {
+      vals.sort(function(a, b) {
+        if (a.timeStamp < b.timeStamp) return 1;
+        if (a.timeStamp > b.timeStamp) return -1;
+        return 0;
+      });
+      callback(null, vals);
+    });
+
+  }
+
+  exbeer.getExBeeriencesPage = function(userIDs, callback) {
+    var q = '[type="exb"].user[id="' + userIDs.join('" or id="') + '"]';
     cloudmine.search(q, function(result, arg2) {
       if(!result.success) return console.error(result.errors);
       console.log(JSON.stringify(result.success));
       var arr = [];
       result.success.forEach(function(key, value) {
         arr.push(value);
-      });
-      arr.sort(function(a, b) {
-        if (a.timeStamp < b.timeStamp) return 1;
-        if (a.timeStamp > b.timeStamp) return -1;
-        return 0;
       });
       callback(null, arr);
     });

@@ -9,7 +9,7 @@ function Users() {
       name: name,
       following: []
     };
-    for(var i in friends) user.following.push(friends[i].id);
+    for(var i in friends) user.following.push(friends[i].uid);
     users.setUser(user, callback);
   }
 

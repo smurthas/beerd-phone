@@ -28,6 +28,7 @@
     <script type="text/javascript" charset="utf-8" src="js/libs/cordova-1.7.0rc1.js"></script>
 
     <script type="text/javascript" charset="utf-8" src="js/config.js"></script>
+    <script type="text/javascript" charset="utf-8" src="js/libs/async.js"></script>
     <script type="text/javascript" charset="utf-8" src="js/libs/jquery.js"></script>
     <script type="text/javascript" charset="utf-8" src="js/libs/cloudmine.js"></script>
     <script type="text/javascript" charset="utf-8" src="js/exbeer.js"></script>
@@ -40,7 +41,9 @@
       $(function() {
         var exb = new ExBeer();
         var users = new Users();
-        exb.getExBeeriences(users.getUser().following, function(err, exbs) {
+        var user = users.getUser();
+
+        exb.getExBeeriences(user.following.concat([user.fbid]), function(err, exbs) {
           if(err) return alert(err);
           for(var i in exbs) insertExBeer(exbs[i]);
         });
