@@ -11,7 +11,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <meta name="viewport" content="width=device-width">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <link rel="stylesheet" href="css/bootstrap.min.css">
   <style>
@@ -93,6 +93,7 @@
               <li class="active"><a href="feed.html">Home</a></li>
               <li><a href="exbeer.html">Share</a></li>
               <li><a href="about.html">About</a></li>
+              <li><a href="index.html" onclick="logout();">Logout</a></li>
             </ul>
           </div><!--/.nav-collapse -->
         </div>
@@ -101,24 +102,45 @@
 
     <div class="container">
       
-    <div id='header'><span class='button'><a href="#" onclick="logout();">LOG OUT</a>&nbsp;<a href="exbeer.html">SHARE</a><span></div>
-    <div id='exbeers'>
-      <div class='exbeer template'>
-        <img class='profile-pic' src='https://fbcdn-profile-a.akamaihd.net/hprofile-ak-snc4/275193_5316709_3753828_q.jpg'>
-        <div class='top-info'><h2 class='user-name'>Simon Murtha-Smith</h2>
-        <h2><span class='beer-name'>Classic Red</span>, <span class='brewery-name'>Rodenbach</span></h2></div>
-        <div class='clear'>&nbsp;</div>
-        <img class='beer-photo' src='http://www.donosborn.com/homebrew/rodenbach.jpg'>
-        <div class='words'>
-          <div class='word0 word'>SOOOOUR!</div>
-          <div class='word1 word'>Bold</div>
-          <div class='word2 word'>Smiley</div>
-        </div>
-        <div class='clear'>&nbsp;</div>
-      </div>
-    </div>
- <footer>
-        <p>&copy; ExBeerience 2012</p>
+      <header>
+        <p>
+          <a class="btn btn-primary btn-large" href="exbeer.html">
+          Share your ExBeerience
+          </a>
+        </p>
+      </header>
+      
+
+        <div class="rows" >
+          <div id='exbeers'>
+            <div class='exbeer template'>
+              <div class="span4" style="margin: 0 0 0 0">
+                <div class="thumbnail">
+                  <img class='profile-pic' src='https://fbcdn-profile-a.akamaihd.net/hprofile-ak-snc4/275193_5316709_3753828_q.jpg' ><br />
+                  <div class="caption">
+                    <h5 class='user-name'>Simon Murtha-Smith</h5>
+                  </div>
+                </div>
+              </div>
+              <div class="span4" style="margin: 0 0 0 0">
+                <div class="thumbnail">
+                  <img class='beer-photo' src='http://www.donosborn.com/homebrew/rodenbach.jpg' ><br />
+                  <div class="caption">
+                    <h5><span class='beer-name'>Classic Red</span>, <span class='brewery-name'>Rodenbach</span></h5>
+                    <div class='words'>
+                      <p class='word0 word'>SOOOOUR!</p>
+                      <p class='word1 word'>Bold</p>
+                      <p class='word2 word'>Smiley</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </ul>
+     
+      <footer>
+          <p>&copy; ExBeerience 2012</p>
       </footer>
 
     </div> <!-- /container -->

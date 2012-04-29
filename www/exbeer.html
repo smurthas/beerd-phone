@@ -11,7 +11,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <meta name="viewport" content="width=device-width">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <link rel="stylesheet" href="css/bootstrap.min.css">
   <style>
@@ -119,23 +119,30 @@
 
     <div class="container">
 
-      
     <h1>Share your ExBeerience!</h1>
-    <img id="photo">
-    <form id='form'>
-      <div class='words'>
-        <h2>Describe it:</h2>
-        <input type='hidden' name='uid' id='uid' />
-        <input type='text' class='word' id='word0' placeholder='Purple.'/>
-        <input type='text' class='word' id='word1' placeholder='Tall.'/>
-        <input type='text' class='word' id='word2' placeholder='Insightful.'/>
-      </div>
-      <div class='clear'></div>
-      <div class='beer'>
-        <input type='text' class='beerinput' id='brewery' placeholder='Brewery...'/>
-        <input type='text' class='beerinput' id='beername' placeholder='Beer Name...'/>
-      </div>
-      <input type='submit' value='Post Your ExBeerience!'>
+
+    <form id='form' class="well form-inline">
+
+        <fieldset> 
+          <legend>Upload your Photo</legend>
+          <img id="photo" />
+          <input type='text' class='beerinput' id='brewery' placeholder='Brewery...' style="width: 80%" />
+          <input type='text' class='beerinput' id='beername' placeholder='Beer Name...' style="width: 80%"/>
+        </fieldset>
+        <fieldset>
+          <legend>Describe it:</legend>
+
+          <div class='words'>
+            <input type='hidden' name='uid' id='uid' />
+            <input type='text' class='word' id='word0' placeholder='Purple.' style="width: 80%" />
+            <input type='text' class='word' id='word1' placeholder='Tall.' style="width: 80%"/>
+            <input type='text' class='word' id='word2' placeholder='Insightful.' style="width: 80%" />
+          </div>
+        </fieldset>
+
+          <div class="form-actions">
+            <button type="submit" class="btn btn-primary">Post Your ExBeerience!</button>
+          </div>
     </form>
     <p>
 <!--      <button onclick="capturePhoto();">Capture Photo</button><br>
