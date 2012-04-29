@@ -83,7 +83,7 @@ function ExBeer() {
   }
 
   exbeer.getImageUrl = function(objectID) {
-    return cloudmine.getFileURL(objectID.substring(5));
+    return cloudmine.getFileURL(objectID.substring(5), {api_key: window.CONFIG.cloudmine.photoReadKey});
   }
 
   exbeer.__CLEAR_ALL = function(callback) {
@@ -104,7 +104,23 @@ function ExBeer() {
         value: userID
       }
     }, function(result) {
-      console.error("DEBUG: result" + JSON.stringify(result));
+      // console.error("DEBUG: result" + JSON.stringify(result));
+      callback();
+    });
+  }
+
+
+  exbeer.unfavorite = function(objectID, userID, callback) {
+    console.log(objectID);
+    console.log(userID);
+    cloudmine.updateValue(objectID, {
+      favorites: {
+        __type__: 'op',
+        op: 'remove',
+        value: userID
+      }
+    }, function(result) {
+      // console.error("DEBUG: result" + JSON.stringify(result));
       callback();
     });
   }

@@ -37,6 +37,9 @@
     <script type="text/javascript" charset="utf-8" src="js/camera.js"></script>
     <script type="text/javascript" charset="utf-8" src="js/users.js"></script>
     <script type="text/javascript" charset="utf-8" src="js/exbeer.js"></script>
+
+    <script src="js/libs/cdv-plugin-fb-connect.js"></script>
+    <script src="js/libs/facebook_js_sdk.js"></script>
     <script>
     $(function() {
 
@@ -55,12 +58,9 @@
             });
             // alert(two);
           }, function(fail, three) {
-            console.log('fail');
-            console.log(fail);
-            console.log(three);
           });
         } catch(err) {
-          console.log('Error: '+err.toString());
+          //console.log('Error: '+err.toString());
         }
 
       });
@@ -69,7 +69,7 @@
         var words = [];
         for (var i=0; i < 3; i++) words[i] = $('form #word' + i).val();
         var user = users.getUser();
-        console.error("DEBUG: user:" + JSON.stringify(user));
+        //console.error("DEBUG: user:" + JSON.stringify(user));
         var vals = {
           uid: $("#uid").val(),
           words: words,
@@ -84,14 +84,66 @@
           }
         };
 
-        console.log(JSON.stringify(vals));
+        //console.log(JSON.stringify(vals));
         exb.postExBeerience(vals, function(err, exBeerience) {
-          console.error("DEBUG: err", err);
-          console.error("DEBUG: exBeerience", exBeerience);
-          window.location = 'feed.html';
+          //console.error("DEBUG: err", err);
+          //console.error("DEBUG: exBeerience", exBeerience);
+
+          console.log('current value' + $("input[@name=testGroup]:checked").val())
+
+
+          //check to see if Facebook has a checkbox selected
+          if($("input[@name=testGroup]:checked").val() === '1'){
+            facebookWallPost();    
+          }else{
+            window.location = 'feed.html';            
+          }
+
         });
         return false;
       })
+
+      document.addEventListener('deviceready', function() {
+        FB.init({
+          appId: "360447590670196",
+          nativeInterface: CDV.FB,
+          useCachedDialogs: false
+        });
+      }, false);
+
+    facebookWallPost = function() {
+
+console.log('hello facebook');
+
+        var words = [];
+        for (var i=0; i < 3; i++) words[i] = $('form #word' + i).val();
+    
+         var params = {
+             method: 'feed',
+             name: 'Share Your ExBeerience',
+             link: 'https://developers.facebook.com/docs/reference/dialogs/',
+             picture: exb.getImageUrl($("#uid").val()),
+             caption: $("#beername").val() + ' ' + $("#brewery").val(),
+             description: words[0] + ' ' + words[1] + ' ' + words[2],
+             redirect_uri: 'feed.html'
+         };
+
+         FB.ui(params,
+         function(response) {
+        });
+
+         return true;
+
+
+    }
+
+    function logout() {
+        FB.logout(function(response) {
+          window.location = 'index.html';
+        });
+      }
+
+
     })
     </script>
 </head>
@@ -112,6 +164,7 @@
               <li class="active"><a href="feed.html">Home</a></li>
               <li><a href="exbeer.html">Share</a></li>
               <li><a href="about.html">About</a></li>
+              <li><a href="index.html" onclick="logout();">Logout</a></li>
             </ul>
           </div><!--/.nav-collapse -->
         </div>
@@ -122,11 +175,10 @@
 
       <h1>Share your ExBeerience!</h1>
 
-      <form id='form' class="well form-inline">
-
-          <fieldset>
-            <legend>Upload your Photo</legend>
-            <img id="photo" />
+      <form id='form' class="well form-inline" style="padding:10px 5px">
+          <fieldset style="margin: 0 0 0 0">
+            <legend>  </legend>
+            <img id="photo" style="margin: 0 0 0 0" />
 
             <fieldset>
               <legend>Describe it:</legend>
@@ -140,6 +192,9 @@
             </fieldset>
             <input type='text' class='beerinput' id='brewery' placeholder='Brewery...' style="width: 80%" />
             <input type='text' class='beerinput' id='beername' placeholder='Beer Name...' style="width: 80%"/>
+            <label><span>Post to Facebook:</span></label>
+            <label>Yes: </label><input type='radio' name="isPostToFacebookAllowed" value="1" checked="checked" />
+            <label>No: </label><input type='radio' name="isPostToFacebookAllowed" value="0" />
           </fieldset>
 
             <div class="form-actions">
